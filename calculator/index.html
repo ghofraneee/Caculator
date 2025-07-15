@@ -1,59 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Calculator</title>
-  <link rel="stylesheet" href="style.css" />
-</head>
-<body>
-  <div class="container">
-    
-    <div class="item-a">
-      <h1>calculator</h1>
-      <div class="theme-switch">
-        
-       
-      </div>
-    </div>
-    
-    
-    <div class="Display">
-      <div class="display" id="display"></div>
-    </div>
+const display = document.getElementById("display");
+const buttons = document.querySelectorAll("button");
 
-    
-    <div class="side">
-      <div class="buttons">
-        <button>7</button>
-        <button>8</button>
-        <button>9</button>
-        <button class="del">DEL</button>
+let input = "";
 
-        <button>4</button>
-        <button>5</button>
-        <button>6</button>
-        <button>+</button>
+buttons.forEach(btn => {
+  btn.addEventListener("click", () => {
+    const value = btn.innerText;
 
-        <button>1</button>
-        <button>2</button>
-        <button>3</button>
-        <button>-</button>
+    if (value === "=") {
+      try {
+        input = eval(input.replace(/x/g, "*"));
+      } catch {
+        input = "Error";
+      }
+    } else if (value === "RESET") {
+      input = "";
+    } else if (value === "DEL") {
+      input = input.slice(0, -1);
+    } else {
+      input += value;
+    }
 
-        <button>.</button>
-        <button>0</button>
-        <button>/</button>
-        <button>x</button>
-
-        <button class="reset">RESET</button>
-        <button class="equal">=</button>
-      </div>
-    </div>
-
-
-   
-
-  </div>
-    <script src="script.js"></script>
-</body>
-</html>
+    // 👉 This was missing!
+    display.innerText = input;
+  });
+});
