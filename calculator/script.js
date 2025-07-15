@@ -23,15 +23,7 @@
           input += value;
         }
 
-        /*display.innerText = input;
-        if (input.length > 20) {
-          display.innerText = "Input too long";
-          input = "";
-        }
-        if (input === "Error") {
-          display.innerText = "Error";
-          input = "";
-        }*/
+    
 
       });
     });
